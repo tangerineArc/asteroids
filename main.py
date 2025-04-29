@@ -50,6 +50,11 @@ def main():
         print("Game over!")
         sys.exit()
 
+      for sht in shot_group:
+        if ast.collide(sht):
+          sht.kill()
+          ast.split()
+
     for drawable in drawable_group:
       drawable.draw(screen)
 
