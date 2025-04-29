@@ -23,7 +23,9 @@ def main():
         return
 
     screen.fill("#000000")
+
     p.draw(screen)
+    p.update(dt)
 
     pygame.display.flip()
 
