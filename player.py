@@ -10,6 +10,7 @@ class Player(circleshape.CircleShape):
 
     self.rotation = 0
     self.cooldown = 0
+    self.score = 0
 
   def triangle(self):
     forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -19,6 +20,10 @@ class Player(circleshape.CircleShape):
     b = self.position - forward * self.radius - right
     c = self.position - forward * self.radius + right
     return [a, b, c]
+
+  def get_score_surface(self, font):
+    score_surface = font.render(f"SCORE: {self.score}", True, "#ffffff")
+    return score_surface
 
   def draw(self, screen):
     pygame.draw.polygon(screen, "#ffffff", self.triangle(), width = 2)

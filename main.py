@@ -19,6 +19,8 @@ def main():
 
   screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 
+  score_font = pygame.font.Font(size = 32)
+
   updatable_group = pygame.sprite.Group()
   drawable_group = pygame.sprite.Group()
   asteroid_group = pygame.sprite.Group()
@@ -53,10 +55,12 @@ def main():
       for sht in shot_group:
         if ast.collide(sht):
           sht.kill()
-          ast.split()
+          ast.split(p)
 
     for drawable in drawable_group:
       drawable.draw(screen)
+
+    screen.blit(p.get_score_surface(score_font), (20, 20))
 
     pygame.display.flip()
 
