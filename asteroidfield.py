@@ -32,17 +32,6 @@ class AsteroidField(pygame.sprite.Sprite):
 
     self.spawn_timer = 0.0
 
-  def restart(self, player, asteroid_group, shot_group):
-    player.re_spawn()
-
-    for asteroid in asteroid_group:
-      asteroid.kill()
-    for shot in shot_group:
-      shot.kill()
-
-    self.kill()
-    AsteroidField()
-
   def spawn(self, radius, position, velocity):
     asteroid = ast.Asteroid(position.x, position.y, radius)
     asteroid.velocity = velocity

@@ -48,7 +48,15 @@ def main():
     for ast in asteroid_group:
       if ast.collide(p):
         p.die()
-        asteroid_field.restart(p, asteroid_group, shot_group)
+        p.re_spawn()
+
+        for ast_ in asteroid_group:
+          ast_.kill()
+        for sht in shot_group:
+          sht.kill()
+
+        asteroid_field.kill()
+        asteroid_field = asteroidfield.AsteroidField()
 
       for sht in shot_group:
         if ast.collide(sht):
