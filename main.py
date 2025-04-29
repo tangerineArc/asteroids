@@ -3,6 +3,7 @@ import asteroidfield
 import constants
 import player
 import pygame
+import sys
 
 
 def main():
@@ -25,7 +26,7 @@ def main():
   asteroid.Asteroid.containers = (asteroid_group, updatable_group, drawable_group)
   asteroidfield.AsteroidField.containers = (updatable_group)
 
-  player.Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
+  p = player.Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
   asteroidfield.AsteroidField()
 
   while True:
@@ -36,6 +37,11 @@ def main():
     screen.fill("#000000")
 
     updatable_group.update(dt)
+
+    for ast in asteroid_group:
+      if ast.collide(p):
+        print("Game over!")
+        sys.exit()
 
     for drawable in drawable_group:
       drawable.draw(screen)
