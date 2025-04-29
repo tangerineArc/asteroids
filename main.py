@@ -4,13 +4,10 @@ import constants
 import player
 import pygame
 import shot
-import sys
 
 
 def main():
   print("Starting Asteroids!")
-  print(f"Screen width: {constants.SCREEN_WIDTH}")
-  print(f"Screen height: {constants.SCREEN_HEIGHT}")
 
   pygame.init()
 
@@ -20,6 +17,7 @@ def main():
   screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 
   score_font = pygame.font.Font(size = 32)
+  lives_font = pygame.font.Font(size = 32)
 
   updatable_group = pygame.sprite.Group()
   drawable_group = pygame.sprite.Group()
@@ -36,7 +34,7 @@ def main():
 
   p = player.Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
 
-  asteroidfield.AsteroidField()
+  asteroid_field = asteroidfield.AsteroidField()
 
   while True:
     for event in pygame.event.get():
@@ -49,8 +47,8 @@ def main():
 
     for ast in asteroid_group:
       if ast.collide(p):
-        print("Game over!")
-        sys.exit()
+        p.die()
+        asteroid_field.restart(p, asteroid_group, shot_group)
 
       for sht in shot_group:
         if ast.collide(sht):
@@ -61,6 +59,7 @@ def main():
       drawable.draw(screen)
 
     screen.blit(p.get_score_surface(score_font), (20, 20))
+    screen.blit(p.get_lives_surface(lives_font), (20, 60))
 
     pygame.display.flip()
 

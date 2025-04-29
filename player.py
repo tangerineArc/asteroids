@@ -2,6 +2,7 @@ import circleshape
 import constants
 import pygame
 import shot
+import sys
 
 
 class Player(circleshape.CircleShape):
@@ -11,6 +12,7 @@ class Player(circleshape.CircleShape):
     self.rotation = 0
     self.cooldown = 0
     self.score = 0
+    self.lives = constants.PLAYER_LIVES
 
   def triangle(self):
     forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -22,8 +24,10 @@ class Player(circleshape.CircleShape):
     return [a, b, c]
 
   def get_score_surface(self, font):
-    score_surface = font.render(f"SCORE: {self.score}", True, "#ffffff")
-    return score_surface
+    return font.render(f"SCORE: {self.score}", True, "#ffffff")
+
+  def get_lives_surface(self, font):
+    return font.render(f"LIVES: {self.lives}", True, "#ffffff")
 
   def draw(self, screen):
     pygame.draw.polygon(screen, "#ffffff", self.triangle(), width = 2)
@@ -44,6 +48,20 @@ class Player(circleshape.CircleShape):
     sht.velocity = forward * constants.PLAYER_SHOOT_SPEED
 
     self.cooldown = constants.PLAYER_SHOOT_COOLDOWN
+
+  def die(self):
+    if self.lives > 0:
+      self.lives -= 1
+
+    if self.lives == 0:
+      print("Game over!")
+      sys.exit()
+
+  def re_spawn(self):
+    self.rotation = 0
+    self.velocity = pygame.Vector2(0, 0)
+    self.cooldown = 0
+    self.position = pygame.Vector2(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
 
   def update(self, dt):
     keys = pygame.key.get_pressed()
