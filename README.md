@@ -62,7 +62,8 @@ The game includes real-time movement, asteroid generation, collision detection, 
 
 5. Enjoy :)
 
-## Snapshots
+## Snapshot
+
+> _I am not good at this_ :(
 
 [![output4.gif](https://i.postimg.cc/RCgpNpr9/output4.gif)](https://postimg.cc/qgCxFLMZ)
-
