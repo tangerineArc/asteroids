@@ -1,7 +1,6 @@
 # Asteroids
 
-Asteroids is a classic arcade-style game where you pilot a spaceship and try not to get obliterated by floating space rocks.This project is a clone of the original game, built using Pygame and object-oriented programming concepts in Python.
-
+Asteroids is a classic arcade-style game where you pilot a spaceship and try not to get obliterated by floating space rocks.
 The game includes real-time movement, asteroid generation, collision detection, and a game loop that just won’t quit until you do.
 
 ## What it Offers?
